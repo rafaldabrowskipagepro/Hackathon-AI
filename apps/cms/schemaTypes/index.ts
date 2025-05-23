@@ -8,6 +8,7 @@ import internalLink from './objects/internalLink'
 import externalUrl from './objects/externalUrl'
 import customImage from './objects/image'
 import heroSection from './objects/heroSection'
+import searchSection from './objects/searchSection'
 
 export const schemaTypes = [
   // Documents
@@ -20,4 +21,5 @@ export const schemaTypes = [
   externalUrl,
   customImage,
   heroSection,
+  searchSection,
 ]

@@ -23,38 +23,29 @@ const page = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'description',
-      title: 'Meta Description',
-      type: 'text',
-      description: 'Brief description for SEO and social sharing',
-      rows: 3,
-    }),
-    defineField({
-      name: 'content',
-      title: 'Page Content',
+      name: 'sections',
+      title: 'Page Sections',
       type: 'array',
+      description: 'Content sections that make up this page',
       of: [
         {
-          type: 'block',
+          type: 'heroSection',
         },
+        {
+          type: 'searchSection',
+        },
+        // Additional section types can be added here in the future
       ],
-    }),
-    defineField({
-      name: 'isPublished',
-      title: 'Published',
-      type: 'boolean',
-      initialValue: false,
     }),
   ],
   preview: {
     select: {
       title: 'title',
       slug: 'slug.current',
-      isPublished: 'isPublished',
     },
-    prepare: ({title, slug, isPublished}) => ({
+    prepare: ({title, slug}) => ({
       title,
-      subtitle: `/${slug || 'no-slug'} ${isPublished ? '✅' : '🚫'}`,
+      subtitle: `/${slug || 'no-slug'}`,
     }),
   },
 })

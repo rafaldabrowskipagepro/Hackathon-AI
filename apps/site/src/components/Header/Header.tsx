@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { createClient } from "@sanity/client";
+import { sanityClient } from "@/lib/sanity";
 import { headerQuery } from "./query";
 import type { NavigationLink } from "./types";
 
@@ -13,15 +13,7 @@ export async function Header() {
     return link.url || "#";
   };
 
-  const sanityClient = createClient({
-    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-    apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION,
-  });
-
   const header = await sanityClient.fetch(headerQuery);
-
-  console.dir(header, { depth: null });
 
   return (
     <header className="w-full bg-white border-b border-ui-border">
